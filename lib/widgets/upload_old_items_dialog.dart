@@ -23,7 +23,8 @@ class UploadOldItemsDialog extends StatefulWidget {
 
     if (res) {
       await cloudDatabase.uploadLocalDataToCloud(email);
-      showToast("Your local notes were uploaded to $email",backgroundColor: Colors.green);
+      showToast("Your local notes were uploaded to $email",
+          backgroundColor: Colors.green);
     } else {
       //TODO: Clear Provider Data as well
       await localData.updateCompleteList([]);
@@ -35,8 +36,7 @@ class _UploadOldItemsDialogState extends State<UploadOldItemsDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: cardColor
-      ,
+      backgroundColor: cardColor,
       title: const Text('Warning'),
       content: Text(
         'You have ${widget.length} items in your device. Do you want to upload the data to the server or start afresh?',

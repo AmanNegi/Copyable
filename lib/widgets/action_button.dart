@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:copyable/data/local_data.dart';
 import 'package:copyable/widgets/responsive.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ActionButton extends StatefulWidget {
@@ -72,40 +71,6 @@ class _ActionButtonState extends State<ActionButton> {
                   ),
                 ),
         ),
-      ),
-    );
-    return GestureDetector(
-      onTap: () {
-        widget.onPressed((value) {
-          log("Updating Button State to $value");
-          isLoading = value;
-          setState(() {});
-        });
-      },
-      child: ElevatedButton(
-        onPressed: null,
-        style: ElevatedButton.styleFrom(
-          elevation: isLoading ? 0 : 2.0,
-          primary:
-              widget.isFilled ? widget.fillColor : appData.value.globalColor,
-          shape: isLoading
-              ? const CircleBorder()
-              : RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-          minimumSize: Size(
-            isLoading ? 50 : double.infinity,
-            kIsWeb ? 0.075 * height : 0.06 * height,
-          ),
-        ),
-        child: isLoading
-            ? const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CircularProgressIndicator(
-                  color: Colors.white,
-                ),
-              )
-            : Text(widget.text, style: const TextStyle(fontSize: 18)),
       ),
     );
   }

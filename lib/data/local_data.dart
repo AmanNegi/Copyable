@@ -7,9 +7,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
-const String DATA_KEY = "local_data";
-const String APP_DATA = "app_data";
-const String LOCAL_UPPER_BOUND = "local_upper_bound";
+const String dataKey = "local_data";
+const String appDataKey = "app_data";
+const String localUpperBound = "local_upper_bound";
 
 ValueNotifier<AppData> appData = ValueNotifier(AppData(
   loggedIn: false,
@@ -33,11 +33,11 @@ class LocalData {
 //* Data Related Functions
   Future<List<CopyableItem>> getData() async {
     await initSharedPrefs();
-    if (!_sharedPreferences!.containsKey(DATA_KEY)) {
+    if (!_sharedPreferences!.containsKey(dataKey)) {
       return [];
     }
     List<CopyableItem> dataList = [];
-    String data = _sharedPreferences!.getString(DATA_KEY)!;
+    String data = _sharedPreferences!.getString(dataKey)!;
     List items = json.decode(data);
 
     for (var e in items) {
@@ -49,7 +49,7 @@ class LocalData {
 
   Future<void> updateCompleteList(List<CopyableItem> list) async {
     await initSharedPrefs();
-    await _sharedPreferences!.setString(DATA_KEY, json.encode(list));
+    await _sharedPreferences!.setString(dataKey, json.encode(list));
     log("local_data.dart: Updated Data to ${json.encode(list)}");
   }
 
@@ -60,23 +60,23 @@ class LocalData {
 //* Local Data Related Functions
   Future initAppData() async {
     await initSharedPrefs();
-    if (_sharedPreferences!.containsKey(APP_DATA)) {
+    if (_sharedPreferences!.containsKey(appDataKey)) {
       AppData data = AppData.fromJson(
-          json.decode(_sharedPreferences!.getString(APP_DATA)!));
+          json.decode(_sharedPreferences!.getString(appDataKey)!));
       appData.value = data;
       log("local_data.dart: Init App Data $data");
     } else {
       _sharedPreferences!
-          .setString(APP_DATA, json.encode(appData.value.toJson()));
+          .setString(appDataKey, json.encode(appData.value.toJson()));
       log("local_data.dart: First Time Inititaing App Data to : ${appData.value}");
     }
   }
 
   Future updateAppData(AppData data) async {
     await initSharedPrefs();
-    if (_sharedPreferences!.containsKey(APP_DATA)) {
+    if (_sharedPreferences!.containsKey(appDataKey)) {
       appData.value = data;
-      _sharedPreferences!.setString(APP_DATA, json.encode(data.toJson()));
+      _sharedPreferences!.setString(appDataKey, json.encode(data.toJson()));
       log("local_data.dart: Updated App Data to $data");
     }
   }

@@ -193,7 +193,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
             // color: Colors.green,
             child: Center(
               child: Text(
-                "Created on: " + _getDate(selectedItem!.time),
+                "Created on: ${ _getDate(selectedItem!.time)}",
               ),
             ),
           ),

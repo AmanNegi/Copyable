@@ -18,9 +18,7 @@ class AnimatedFABWidget extends StatefulHookWidget {
 class _AnimatedFABWidgetState extends State<AnimatedFABWidget> {
   late AnimationController _animationController;
   late Animation<Color?> _buttonColor;
-  late Animation<double> _animateIcon;
   late Animation<double> _translateButton;
-  final Curve _curve = Curves.easeOut;
   final double _fabHeight = 56.0;
   bool isOpened = false;
 
@@ -37,9 +35,6 @@ class _AnimatedFABWidgetState extends State<AnimatedFABWidget> {
   Widget build(BuildContext context) {
     _animationController =
         useAnimationController(duration: const Duration(milliseconds: 500));
-
-    _animateIcon =
-        Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
 
     _buttonColor = ColorTween(
       begin: Theme.of(context).primaryColor,
@@ -74,8 +69,7 @@ class _AnimatedFABWidgetState extends State<AnimatedFABWidget> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Container(
-                child: Transform(
+               Transform(
                   transform: Matrix4.translationValues(
                       0.0, _translateButton.value * 2.0, 0.0),
                   child: Showcase(
@@ -108,9 +102,8 @@ class _AnimatedFABWidgetState extends State<AnimatedFABWidget> {
                     ),
                   ),
                 ),
-              ),
-              Container(
-                child: Transform(
+              
+              Transform(
                   transform: Matrix4.translationValues(
                       0.0, _translateButton.value, 0.0),
                   child: Showcase(
@@ -145,7 +138,7 @@ class _AnimatedFABWidgetState extends State<AnimatedFABWidget> {
                     ),
                   ),
                 ),
-              ),
+              
               Showcase(
                 key: fabKey,
                 radius: BorderRadius.circular(120.0),

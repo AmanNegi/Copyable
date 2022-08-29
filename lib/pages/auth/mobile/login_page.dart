@@ -156,7 +156,7 @@ class _LoginPageState extends State<LoginPage> {
                             pinned: true,
                             heading: 'Welcome');
                       }
-                      Navigator.of(context).pushNamed(homeRoute);
+                      if (mounted) Navigator.of(context).pushNamed(homeRoute);
                     },
                     child: Container(
                       color: Colors.transparent,
