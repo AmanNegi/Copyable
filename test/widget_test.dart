@@ -9,6 +9,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test("Some Random Test Here", () {
+    int a = 15;
+    assert(a == 15);
     print("Some Test Here..");
   });
 }
