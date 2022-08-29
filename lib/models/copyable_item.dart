@@ -9,15 +9,19 @@ CopyableItem copyableItemFromJSON(String data) =>
 
 class CopyableItem {
   final String id;
+  final String heading;
   final String text;
   final DateTime time;
-  final bool isPinned;
+  late DateTime? pinnedTime;
+  late bool isPinned;
   late String referenceId;
 
   CopyableItem({
     required this.id,
     required this.text,
     required this.time,
+    required this.heading,
+    this.pinnedTime,
     this.isPinned = false,
   });
 
@@ -27,6 +31,9 @@ class CopyableItem {
       "name": text,
       "time": time.millisecondsSinceEpoch,
       'isPinned': isPinned,
+      'pinnedTime':
+          pinnedTime == null ? null : pinnedTime!.millisecondsSinceEpoch,
+      'heading': heading,
     };
   }
 
@@ -36,6 +43,10 @@ class CopyableItem {
       text: map['name'],
       time: DateTime.fromMillisecondsSinceEpoch(map['time']),
       isPinned: map['isPinned'],
+      pinnedTime: map['pinnedTime'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['pinnedTime'])
+          : null,
+      heading: map['heading'] ?? 'No heading',
     );
   }
   factory CopyableItem.fromSnapshot(DocumentSnapshot data) {
@@ -47,7 +58,7 @@ class CopyableItem {
 
   @override
   String toString() {
-    return "{-$text-}";
+    return "{-$text, $isPinned-}";
   }
 }
 
@@ -60,6 +71,6 @@ List<CopyableItem> convertSnapshotListToItems(QuerySnapshot snapshot) {
     itemList.add(CopyableItem.fromSnapshot(e));
   }
 
-  log("Data From Cloud: $itemList ${docs.length}");
+  log("Data From Cloud:  ${docs.length}");
   return itemList;
 }

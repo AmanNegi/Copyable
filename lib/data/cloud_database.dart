@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:copyable/globals.dart';
 import 'package:copyable/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,16 +9,14 @@ import 'package:flutter/material.dart';
 import '../models/copyable_item.dart';
 import 'local_data.dart';
 
-// TODO: Manage upper bound
-
 class CloudDataBase {
   final FirebaseFirestore globalInstance = FirebaseFirestore.instance;
 
   late CollectionReference userCollection = globalInstance.collection("users");
 
-  UserModel addUser(User e) {
+  Future<UserModel> addUser(User e) async {
     UserModel user = UserModel.fromUser(e);
-    userCollection.doc(user.uid).set(user.toJson());
+    await userCollection.doc(user.uid).set(user.toJson());
     return user;
   }
 
@@ -55,6 +52,18 @@ class CloudDataBase {
         .set(item.toJson());
   }
 
+  Future<void> pinItem(String itemId, bool value) async {
+    await userCollection
+        .doc(appData.value.uid)
+        .collection('items')
+        .doc(itemId)
+        .update({
+      'isPinned': value,
+      //TODO: Check if working fine
+      'pinnedTime': DateTime.now().millisecondsSinceEpoch,
+    });
+  }
+
   Future<void> removeItem(String id) async {
     await userCollection
         .doc(appData.value.uid)
@@ -67,34 +76,37 @@ class CloudDataBase {
     return userCollection
         .doc(appData.value.uid)
         .collection('items')
-        // .orderBy('time', descending: true)
+        .orderBy('time', descending: true)
         .snapshots();
   }
 
-// TODO: Create a function that merges the data from Local and Cloud
-// TODO: and then posts to the cloud
+  Future<List<CopyableItem>> searchItems(String query) async {
+    var data = await getStreamOfData().first;
+    List<CopyableItem> list = convertSnapshotListToItems(data);
+    List<CopyableItem> newList = [];
 
-  Future uploadLocalDataToCloud(String email) async {
-    List<CopyableItem> data = await localData.getData();
-    if (data.isNotEmpty) {
-      log("Uploading Data From Local Storage");
-      List<CopyableItem> list = await localData.getData();
-      for (var e in list) {
-        await addDataToUserList(e);
+    for (int i = 0; i < list.length; i++) {
+      if (list[i].text.contains(query)) {
+        newList.add(list[i]);
       }
-
-      showToast("Your local notes were uploaded to $email");
     }
+    return newList;
   }
 
-  //* Extra Functions
+  Future<bool> uploadLocalDataToCloud(String email) async {
+    List<CopyableItem> list = await localData.getData();
+    if (list.isNotEmpty) {
+      log("Uploading Data From Local Storage");
+      await Future.forEach(list, (CopyableItem element) async {
+        await addDataToUserList(element);
+      });
+    }
 
-  Future<void> swapTwoDataDates(CopyableItem item1, CopyableItem item2) async {
-    await updateDataItem(
-        CopyableItem(id: item1.id, text: item1.text, time: item2.time));
-    await updateDataItem(
-        CopyableItem(id: item2.id, text: item2.text, time: item1.time));
+    await localData.updateCompleteList([]);
+    return true;
   }
+
+
 }
 
 CloudDataBase cloudDatabase = CloudDataBase();

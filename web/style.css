@@ -1,0 +1,16 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: raleway;
+    margin: 0px;
+    background-size: 100px 100px;
+    height: 100%;
+    background-image: url("icons/loading.gif");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-color: black;
+}

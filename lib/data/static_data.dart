@@ -1,11 +1,10 @@
 import 'dart:developer';
 
-import 'package:copyable/data/cloud_database.dart';
 import 'package:copyable/data/local_data.dart';
 import 'package:copyable/globals.dart';
-import 'package:copyable/helper/logger.dart';
+
 import 'package:copyable/models/copyable_item.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class StaticData extends ChangeNotifier {
@@ -21,14 +20,18 @@ class StaticData extends ChangeNotifier {
     });
   }
 
-  void addData(CopyableItem item) {
+  void refreshData() async {
+    var value = await localData.getData();
+    _items = value;
+    notifyListeners();
+  }
+
+  Future<bool> addData(CopyableItem item) async {
     _items.add(item);
     notifyListeners();
+    localData.updateCompleteList(getItems());
 
-    localData.addData(item);
-    if (isLoggedIn()) {
-      cloudDatabase.addDataToUserList(item);
-    }
+    return true;
   }
 
   void replaceList(List<CopyableItem> items) {
@@ -36,60 +39,75 @@ class StaticData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addDataFromClipboard() async {
-    ClipboardData? data = await Clipboard.getData(Clipboard.kTextPlain);
-    if (data == null || data.text!.isEmpty) {
-      showToast("Empty Clipboard");
+  void toggleIsPinned(String id, bool value) {
+    int res = getIndex(id);
+    if (res >= 0) {
+      _items[res].isPinned = value;
+      value ? _items[res].pinnedTime = DateTime.now() : null;
+      notifyListeners();
+      log("${value ? 'Pinned' : 'UnPinned'} Successfully");
       return;
     }
-
-    Logger.logData("Adding: ${data.text}", shorten: true);
-
-    var item = CopyableItem(
-      text: data.text!.trim(),
-      id: localData.getAvailableID(),
-      time: DateTime.now(),
-    );
-    addData(item);
+    log("An error occured while pinning");
   }
 
   void removeData(String id) {
     log("Finding : $id in $_items");
-    for (int i = 0; i < _items.length; i++) {
-      if (_items[i].id == id) {
-        _items.removeAt(i);
-        log("Deleted Successfully");
-        localData.updateCompleteList(_items);
 
-        return;
-      }
+    int res = getIndex(id);
+    if (res >= 0) {
+      _items.removeAt(res);
+      log("Deleted Successfully");
+      localData.updateCompleteList(_items);
+      notifyListeners();
+      return;
     }
+
     log("No Data Found");
   }
 
-  Future<void> updateData(CopyableItem item) async {
-    for (int i = 0; i < _items.length; i++) {
-      if (_items[i].id == item.id) {
-        _items[i] = item;
-        notifyListeners();
-
-        log("Updated Successfully");
-        return;
-      }
+  void updateData(CopyableItem item) {
+    int res = getIndex(item.id);
+    if (res >= 0) {
+      _items[res] = item;
+      notifyListeners();
+      localData.updateCompleteList(getItems());
+      log("Updated Successfully");
+      return;
     }
+
     log("Update Unsuccessfull");
   }
-}
 
-Future<CopyableItem> getRandomCopyableItem() async {
-  return CopyableItem(
-    id: localData.getAvailableID(),
-    text: "ABC",
-    time: DateTime.now(),
-  );
+  int getIndex(String id) {
+    for (int i = 0; i < _items.length; i++) {
+      if (_items[i].id == id) {
+        return i;
+      }
+    }
+    log("An Error Occured");
+    return -1;
+  }
+
+  Future<List<CopyableItem>> searchItems(String query) async {
+    var items = getItems();
+
+    List<CopyableItem> filteredList = [];
+    for (int i = 0; i < items.length; i++) {
+      if (items[i].text.contains(query)) {
+        filteredList.add(items[i]);
+      }
+    }
+    return filteredList;
+  }
 }
 
 void saveDataToClipBoard(String data) {
   Clipboard.setData(ClipboardData(text: data));
-  showToast("Copied text to Clipboard");
+  showToast("Copied text to Clipboard", backgroundColor: Colors.green);
+}
+
+String getHeadingFromContent(String data) {
+  int subStrLen = (data.length > 30 ? 30 : data.length);
+  return data.substring(0, subStrLen);
 }

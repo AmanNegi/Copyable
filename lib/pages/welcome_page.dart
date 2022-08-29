@@ -1,3 +1,5 @@
+import 'package:copyable/data/local_data.dart';
+import 'package:copyable/models/app_data.dart';
 import 'package:copyable/route_generator.dart';
 import 'package:flutter/material.dart';
 
@@ -21,21 +23,29 @@ class _WelcomePageState extends State<WelcomePage> {
               onPressed: () {
                 Navigator.of(context).pushNamed(loginRoute);
               },
-              child: Text("Log in"),
+              child: const Text("Log in"),
             ),
             Center(
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pushNamed(signUpRoute);
                 },
-                child: Text("Sign Up"),
+                child: const Text("Sign Up"),
               ),
             ),
             ElevatedButton(
               onPressed: () {
+                localData.updateAppData(AppData(
+                  email: '',
+                  loggedIn: false,
+                  isFirstTime: false,
+                  uid: '',
+                  username: '',
+                  shownInstructions: false,
+                ));
                 Navigator.of(context).pushNamed(homeRoute);
               },
-              child: Text("Continue without an Account"),
+              child: const Text("Continue without an Account"),
             ),
           ],
         ),
