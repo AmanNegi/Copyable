@@ -13,8 +13,6 @@ void main() {
   test("Some Random Test Here", () {
     int a = 15;
     assert(a == 15);
-    int b = 20;
-    assert(b == 20);
     log("Some Test Here..");
   });
 }
