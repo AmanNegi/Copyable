@@ -19,7 +19,6 @@ showToast(String message, {Color? backgroundColor}) {
   }
 
   bgColor = "#${bgColor.substring(2)}";
-  log("BG COLOR: $bgColor");
   Fluttertoast.showToast(
     msg: message,
     timeInSecForIosWeb: 2,

@@ -38,7 +38,6 @@ class MyApp extends StatelessWidget {
       child: ValueListenableBuilder(
         valueListenable: appData,
         builder: (context, value, _) {
-          log("NEW DATA IN main.dart");
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             onGenerateRoute: getRoutes,
