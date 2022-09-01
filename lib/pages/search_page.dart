@@ -17,7 +17,6 @@ import 'package:copyable/pages/home/desktop_home_page.dart';
 import 'package:copyable/widgets/item_widget/mobile_item.dart';
 
 import '../globals.dart';
-import '../helper/logger.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -246,7 +245,7 @@ class _SearchPageState extends State<SearchPage> {
         future: getFuture(),
         builder: (context, AsyncSnapshot<List<CopyableItem>> snapshot) {
           if (snapshot.data != null) {
-            Logger.logData("DATA: ${((snapshot.data!))}");
+          log("DATA: ${((snapshot.data!))}");
           }
           if (query.length < 3 || query == '/-*') {
             return const Center(
@@ -309,7 +308,6 @@ class _SearchPageState extends State<SearchPage> {
                   }
                   return MobileItem(
                     onDoubleTap: (e) {},
-                    // onLongPress: _pinUnPinItem,
                     onLongPress: (e) {},
                     onDelete: (i, e) {},
                     isEditItem: true,

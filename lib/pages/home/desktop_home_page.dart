@@ -128,7 +128,6 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
           crossAxisSpacing: 15,
           itemCount: itemList.length,
           itemBuilder: (context, index) {
-            // onDoubleTap: _navigateToAddItemPage,
             return DesktopItem(
               onDoubleTap: () {
                 editItemIndex = index;
@@ -168,7 +167,6 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   List<KeyAction> _getKeyBindings() {
     return [
       KeyAction(LogicalKeyboardKey.f1, 'View Shortcuts', () {
-        // Navigator.of(context).pushNamed(shortcutsRoute);
         selectedIndex.value = 2;
       }),
       KeyAction(
@@ -189,7 +187,6 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
         LogicalKeyboardKey.slash,
         'Go to Add Item Page',
         () {
-          // navigateToAddItemPage(context);
           selectedIndex.value = 1;
         },
       ),

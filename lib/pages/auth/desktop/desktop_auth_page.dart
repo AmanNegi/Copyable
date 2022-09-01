@@ -2,9 +2,10 @@ import 'dart:developer';
 
 import 'package:copyable/data/auth.dart';
 import 'package:copyable/data/local_data.dart';
-import 'package:copyable/globals.dart';
+import 'package:copyable/colors.dart';
 import 'package:copyable/helper/distrib_functions.dart';
 import 'package:copyable/route_generator.dart';
+import 'package:copyable/strings.dart';
 import 'package:copyable/widgets/action_button.dart';
 import 'package:copyable/widgets/upload_old_items_dialog.dart';
 import 'package:flutter/material.dart';

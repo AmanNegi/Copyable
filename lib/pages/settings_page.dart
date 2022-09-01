@@ -1,10 +1,10 @@
 import 'package:copyable/data/local_data.dart';
 import 'package:copyable/globals.dart';
+import 'package:copyable/colors.dart';
 import 'package:copyable/widgets/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-//TODO: Test on Mobile as well
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);

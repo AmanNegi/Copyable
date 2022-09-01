@@ -1,9 +1,10 @@
 import 'package:copyable/data/auth.dart';
 import 'package:copyable/data/local_data.dart';
 import 'package:copyable/data/static_data.dart';
-import 'package:copyable/globals.dart';
+import 'package:copyable/colors.dart';
 import 'package:copyable/pages/home/desktop_home_page.dart';
 import 'package:copyable/route_generator.dart';
+import 'package:copyable/strings.dart';
 import 'package:copyable/widgets/exit_app_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -38,27 +39,11 @@ class _SideBarWidgetState extends State<SideBarWidget> {
           _getNavRailItem(2, MdiIcons.appleKeyboardCommand),
           _getNavRailItem(3, MdiIcons.cloudSearch),
           _getNavRailItem(
-              -1, isLoggedIn() ? Icons.logout : MdiIcons.accountLockOpen,
-              onPressed: () async {
-            if (isLoggedIn()) {
-              ExitAppDialog.show(context,
-                      text: "Are you sure you want to Log Out?")
-                  .then((value) async {
-                if (value) {
-                  await authManager.signOutUser();
-                  if (mounted) {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, loginRoute, (route) => false);
-                  }
-                }
-              });
-            } else {
-              if (mounted) {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, loginRoute, (route) => false);
-              }
-            }
-          }, tooltip: isLoggedIn() ? "Logout" : "Login"),
+            -1,
+            isLoggedIn() ? Icons.logout : MdiIcons.accountLockOpen,
+            onPressed: () async => await _loginOrLogout(context),
+            tooltip: isLoggedIn() ? "Logout" : "Login",
+          ),
           const Spacer(),
           _getNavRailItem(
             4,
@@ -77,6 +62,26 @@ class _SideBarWidgetState extends State<SideBarWidget> {
         ],
       ),
     );
+  }
+
+  Future<void> _loginOrLogout(BuildContext context) async {
+    if (isLoggedIn()) {
+      ExitAppDialog.show(context, text: "Are you sure you want to Log Out?")
+          .then((value) async {
+        if (value) {
+          await authManager.signOutUser();
+          if (mounted) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, loginRoute, (route) => false);
+          }
+        }
+      });
+    } else {
+      if (mounted) {
+        Navigator.pushNamedAndRemoveUntil(
+            context, loginRoute, (route) => false);
+      }
+    }
   }
 
   _getNavRailItem(int index, IconData icon,

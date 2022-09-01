@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:copyable/data/local_data.dart';
 import 'package:copyable/data/static_data.dart';
 import 'package:copyable/globals.dart';
+import 'package:copyable/colors.dart';
 import 'package:copyable/helper/distrib_functions.dart';
 import 'package:copyable/models/copyable_item.dart';
 import 'package:copyable/pages/home/desktop_home_page.dart';

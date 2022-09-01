@@ -57,7 +57,8 @@ class AuthManager {
           email: email.trim(), password: password.trim());
 
       if (userCredential.user == null) {
-        showToast("An Error occured while logging you in.", backgroundColor: Colors.red);
+        showToast("An Error occured while logging you in.",
+            backgroundColor: Colors.red);
         return false;
       }
 

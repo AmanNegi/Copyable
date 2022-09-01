@@ -42,8 +42,6 @@ class _ActionButtonState extends State<ActionButton> {
         },
         onPanDown: (v) {},
         child: Container(
-          // curve: Curves.easeIn,
-          // duration: const Duration(seconds: 1),
           height: isLoading
               ? 50
               : Responsive.isDesktop(context)

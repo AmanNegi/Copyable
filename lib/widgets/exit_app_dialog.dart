@@ -1,5 +1,5 @@
 import 'package:copyable/data/local_data.dart';
-import 'package:copyable/globals.dart';
+import 'package:copyable/colors.dart';
 import 'package:flutter/material.dart';
 
 class ExitAppDialog extends StatefulWidget {

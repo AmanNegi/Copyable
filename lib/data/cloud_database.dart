@@ -59,7 +59,6 @@ class CloudDataBase {
         .doc(itemId)
         .update({
       'isPinned': value,
-      //TODO: Check if working fine
       'pinnedTime': DateTime.now().millisecondsSinceEpoch,
     });
   }
@@ -105,8 +104,6 @@ class CloudDataBase {
     await localData.updateCompleteList([]);
     return true;
   }
-
-
 }
 
 CloudDataBase cloudDatabase = CloudDataBase();

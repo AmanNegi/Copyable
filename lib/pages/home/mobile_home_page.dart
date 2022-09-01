@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:copyable/data/cloud_database.dart';
 import 'package:copyable/data/local_data.dart';
 import 'package:copyable/data/static_data.dart';
-import 'package:copyable/globals.dart';
+import 'package:copyable/colors.dart';
 import 'package:copyable/models/copyable_item.dart';
 import 'package:copyable/route_generator.dart';
 import 'package:copyable/widgets/animated_fab.dart';
@@ -193,7 +193,7 @@ class _MobileHomePageState extends State<MobileHomePage> {
             // color: Colors.green,
             child: Center(
               child: Text(
-                "Created on: ${ _getDate(selectedItem!.time)}",
+                "Created on: ${_getDate(selectedItem!.time)}",
               ),
             ),
           ),
@@ -203,7 +203,6 @@ class _MobileHomePageState extends State<MobileHomePage> {
   }
 
   _getDate(DateTime date) {
-    // DateFormat formatter = DateFormat("dd-mm-yyyy");
     DateFormat formatter = DateFormat.yMMMd('en_US').add_jm();
     return formatter.format(date);
   }
@@ -268,7 +267,6 @@ class _MobileHomePageState extends State<MobileHomePage> {
         ),
       ),
       elevation: 3,
-      // centerTitle: true,
       automaticallyImplyLeading: false,
       actions: [
         Builder(builder: (context) {
@@ -283,12 +281,6 @@ class _MobileHomePageState extends State<MobileHomePage> {
             ),
           );
         }),
-        // IconButton(
-        //   onPressed: () {
-        //     Navigator.of(context).pushNamed(searchRoute);
-        //   },
-        //   icon: const Icon(Icons.search),
-        // ),
       ],
     );
   }

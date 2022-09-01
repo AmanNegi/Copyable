@@ -1,4 +1,4 @@
-import 'package:copyable/globals.dart';
+import 'package:copyable/colors.dart';
 import 'package:flutter/material.dart';
 
 class AppData {
@@ -10,8 +10,6 @@ class AppData {
   String email;
   late Color globalColor;
   double fontSize;
-
-  //TODO: add fields later
 
   AppData({
     required bool loggedIn,

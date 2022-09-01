@@ -2,7 +2,9 @@ import 'package:copyable/data/auth.dart';
 import 'package:copyable/data/local_data.dart';
 import 'package:copyable/data/static_data.dart';
 import 'package:copyable/globals.dart';
+import 'package:copyable/colors.dart';
 import 'package:copyable/route_generator.dart';
+import 'package:copyable/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
@@ -62,18 +64,6 @@ class _HomeDrawerState extends State<HomeDrawer> {
               ],
             ),
           ),
-          // UserAccountsDrawerHeader(
-          //   // decoration: const BoxDecoration(),
-          //   accountEmail: Text(
-          //     appData.value.email,
-          //     style: Theme.of(context).textTheme.bodyText2!.copyWith(
-          //           fontSize: 16,
-          //         ),
-          //   ),
-          //   accountName: Text(
-          //     appData.value.username,
-
-          // ),
           const Divider(),
           ListTile(
             leading: Icon(
@@ -126,7 +116,8 @@ class _HomeDrawerState extends State<HomeDrawer> {
                 await localData.updateCompleteList([]);
                 if (mounted) {
                   Provider.of<StaticData>(context, listen: false).refreshData();
-                  showToast("Cleared the app data", backgroundColor: Colors.green);
+                  showToast("Cleared the app data",
+                      backgroundColor: Colors.green);
                 }
               },
             ),

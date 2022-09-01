@@ -25,11 +25,13 @@ Route<dynamic> getRoutes(RouteSettings settings) {
         desktop: DesktopAuthPage(),
       ));
     case signUpRoute:
-      return getMaterialPageRoute(const Responsive(
-        mobile: SignUpPage(),
-        tablet: DesktopAuthPage(),
-        desktop: DesktopAuthPage(),
-      ));
+      return getMaterialPageRoute(
+        const Responsive(
+          mobile: SignUpPage(),
+          tablet: DesktopAuthPage(),
+          desktop: DesktopAuthPage(),
+        ),
+      );
     case shortcutsRoute:
       return getMaterialPageRoute(const ShortcutsPage());
     case searchRoute:
@@ -39,12 +41,14 @@ Route<dynamic> getRoutes(RouteSettings settings) {
       return getMaterialPageRoute(const SettingsPage());
 
     case createEditRoute:
-      return getMaterialPageRoute(args.isEmpty
-          ? const AddUpdatePage()
-          : AddUpdatePage(
-              edit: args['edit'],
-              oldItem: args['oldItem'],
-            ));
+      return getMaterialPageRoute(
+        args.isEmpty
+            ? const AddUpdatePage()
+            : AddUpdatePage(
+                edit: args['edit'],
+                oldItem: args['oldItem'],
+              ),
+      );
     default:
       return getMaterialPageRoute(const LoginPage());
   }
@@ -60,4 +64,4 @@ const String loginRoute = "/loginRoute";
 const String signUpRoute = "/signUpRoute";
 const String shortcutsRoute = "/shortcutsRoute";
 const String searchRoute = "/searchRoute";
-const String settingsRoute= "/settingsRoute";
+const String settingsRoute = "/settingsRoute";

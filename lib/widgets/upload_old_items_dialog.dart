@@ -1,6 +1,8 @@
 import 'package:copyable/data/cloud_database.dart';
 import 'package:copyable/data/local_data.dart';
+import 'package:copyable/data/static_data.dart';
 import 'package:copyable/globals.dart';
+import 'package:copyable/colors.dart';
 import 'package:flutter/material.dart';
 
 class UploadOldItemsDialog extends StatefulWidget {
@@ -26,7 +28,6 @@ class UploadOldItemsDialog extends StatefulWidget {
       showToast("Your local notes were uploaded to $email",
           backgroundColor: Colors.green);
     } else {
-      //TODO: Clear Provider Data as well
       await localData.updateCompleteList([]);
     }
   }
