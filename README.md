@@ -22,7 +22,7 @@ Some use cases are specified below:
 
 </br>
 
-## Features 🎨
+## Features 🗺
 
 - One Click Copy.
 - Authentication powered by Firebase.
