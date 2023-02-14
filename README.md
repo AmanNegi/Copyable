@@ -6,6 +6,18 @@
 ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
 </br>
 
+## Table of Contents
+  - [About Copyable](#about-copyable)
+  - [Features](#features)
+  - [Screenshots](#screenshots)
+  - [Project Structure](#project-structure)
+  - [Authors](#authors)
+  - [Feel Free to Contact](#feel-free-to-contact)
+  - [Contribute](#contribute)
+  - [How to setup the project](#how-to-setup-the-project)
+  - [Licensing](#licensing)
+
+## About Copyable
 An application that can be used to save some text and instantly get it when needed. This app is build for content creators, developers, designers and many more people who come across writing the same things again and again.
 
 Some use cases are specified below:
@@ -22,7 +34,7 @@ Some use cases are specified below:
 
 </br>
 
-## Features 🎨
+## Features 
 
 - One Click Copy.
 - Authentication powered by Firebase.
@@ -33,7 +45,7 @@ Some use cases are specified below:
 - Set custom font Size and color settings.
 - The web application also supports keyboard shortcuts on all desktop browsers.
 
-## Screenshots 📱💻
+## Screenshots 
 
 <img src="./screenshots/login_page.png" style="margin-right:10px; margin-left:10px;">
 <p align="center" >Auth Page</div>
@@ -48,7 +60,7 @@ Some use cases are specified below:
 </br>
 </br>
 
-## Project Structure 🏢
+## Project Structure 
 
 ```
 ...
@@ -68,13 +80,13 @@ Some use cases are specified below:
    └── main.dart   # Root file of the project
 ```
 
-## Authors 🧑
+## Authors
 
 > [**Aman Negi(Aster Joules)**](https://github.com/AmanNegi) - _Initial work_
 
 </br>
 
-## Feel Free to Contact 📱
+## Feel Free to Contact
 
 - Gmail : asterjoules@gmail.com
 - Instagram : [Aster Joules](https://www.instagram.com/aster_joules/)
@@ -82,14 +94,14 @@ Some use cases are specified below:
   </br>
   </br>
 
-## Contribute 🧑‍🤝‍🧑
+## Contribute
 
 - The project is at an inital stage of development thus we expect many new changes.
 - If you find any potential issues you can open an issue we will try to fix it as soon as possible.
 - If you want to contribute to this project, you can create a **pull request** with detailed description as to what changes you have made, and we will test and merge the pull request.
 - If you face any issues setting up the project you can contact us at asterjoules@gmail.com. You can also check the steps mentioned below to check how to setup the project.
 
-## How to setup the project ❓
+## How to setup the project
 
 1. Create a new project in your firebase console and enable firebase authentication.
 2. Generate `google-services.json` file and place it in `android/app`.
@@ -97,10 +109,10 @@ Some use cases are specified below:
 4. Generate `key.jks` and place it inside `android/app`.
 5. You also need to create your own `key.properties` file.
 
-##### If you don't know how to generate `key.jks` file check [this](https://docs.flutter.dev/deployment/android)
+> If you don't know how to generate `key.jks` file check [this](https://docs.flutter.dev/deployment/android).
 
 
-## Licensing ©️
+## Licensing
 
 > Copyright 2021 Aster Joues
 
