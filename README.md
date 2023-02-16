@@ -2,22 +2,11 @@
 
 # Copyable <img src="./assets/logo.png" height="25" width="25">
 
-![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
-![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
-</br>
+![](https://img.shields.io/badge/Flutter-3.3.7-green)
+![](https://img.shields.io/badge/Built%20With-Flutter-blue)
+![](https://img.shields.io/badge/Made%20By-Aman%20Negi-0E7D7F)
 
-## Table of Contents
-  - [About Copyable](#about-copyable)
-  - [Features](#features)
-  - [Screenshots](#screenshots)
-  - [Project Structure](#project-structure)
-  - [Authors](#authors)
-  - [Feel Free to Contact](#feel-free-to-contact)
-  - [Contribute](#contribute)
-  - [How to setup the project](#how-to-setup-the-project)
-  - [Licensing](#licensing)
 
-## About Copyable
 An application that can be used to save some text and instantly get it when needed. This app is build for content creators, developers, designers and many more people who come across writing the same things again and again.
 
 Some use cases are specified below:
@@ -33,6 +22,16 @@ Some use cases are specified below:
 > Download the **Android** app from [here](https://play.google.com/store/apps/details?id=com.aster.copyable). <br>You can visit the live ✨ web application at https://amannegi.github.io/copyable. <br> Source Code: https://github.com/amannegi/copyable.
 
 </br>
+
+## Table of Contents
+  - [Features](#features)
+  - [Screenshots](#screenshots)
+  - [Project Structure](#project-structure)
+  - [Authors](#authors)
+  - [Feel Free to Contact](#feel-free-to-contact)
+  - [Contribute](#contribute)
+  - [How to setup the project](#how-to-setup-the-project)
+  - [Licensing](#licensing)
 
 ## Features 
 
