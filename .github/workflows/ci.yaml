@@ -1,9 +1,11 @@
 name: CI
 
-on: 
+#! Not in use
+on:
   pull_request:
-    branches: 
-      - master
+    branches:
+      # - master
+      - prod
 
 jobs:
   flutter_test:

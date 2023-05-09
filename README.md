@@ -1,6 +1,7 @@
 <!-- # Copyable 📋 -->
 
-# Copyable <img src="./assets/logo.png" height="25" width="25">
+<!-- # Copyable <img src="./assets/logo.png" height="25" width="25"> -->
+![](./screenshots/copyable.png)
 
 ![](https://img.shields.io/badge/Flutter-3.3.7-green)
 ![](https://img.shields.io/badge/Built%20With-Flutter-blue)
